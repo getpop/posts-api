@@ -1,5 +1,5 @@
 <?php
-namespace PoP\Posts\FieldValueResolvers;
+namespace PoP\PostsAPI\FieldValueResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\Schema\SchemaDefinition;
