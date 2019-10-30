@@ -1,2 +1,2 @@
 <?php
-\PoP\Posts\Component::init();
+\PoP\PostsAPI\Component::init();
