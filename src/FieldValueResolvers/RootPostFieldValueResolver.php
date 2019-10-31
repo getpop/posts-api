@@ -15,13 +15,13 @@ class RootPostFieldValueResolver extends AbstractPostFieldValueResolver
         return array(FieldResolver_Root::class);
     }
 
-    public function getFieldDocumentationDescription(FieldResolverInterface $fieldResolver, string $fieldName): ?string
+    public function getSchemaFieldDescription(FieldResolverInterface $fieldResolver, string $fieldName): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
 			'post' => $translationAPI->__('ID of the post', 'posts-api'),
 			'posts' => $translationAPI->__('IDs of the posts in the current site', 'posts-api'),
         ];
-        return $descriptions[$fieldName] ?? parent::getFieldDocumentationDescription($fieldResolver, $fieldName);
+        return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($fieldResolver, $fieldName);
     }
 }
