@@ -4,7 +4,7 @@ namespace PoP\PostsAPI\FieldValueResolvers;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\Engine\FieldValueResolvers\SiteFieldValueResolverTrait;
 use PoP\ComponentModel\FieldResolvers\FieldResolverInterface;
-use PoP\API\FieldResolver_Sites;
+use PoP\API\FieldResolvers\SiteFieldResolver;
 use PoP\Posts\FieldValueResolvers\AbstractPostFieldValueResolver;
 
 class SitePostFieldValueResolver extends AbstractPostFieldValueResolver
@@ -13,7 +13,7 @@ class SitePostFieldValueResolver extends AbstractPostFieldValueResolver
 
     public static function getClassesToAttachTo(): array
     {
-        return array(FieldResolver_Sites::class);
+        return array(SiteFieldResolver::class);
     }
 
     public function getSchemaFieldDescription(FieldResolverInterface $fieldResolver, string $fieldName): ?string

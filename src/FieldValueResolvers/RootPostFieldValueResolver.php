@@ -3,7 +3,7 @@ namespace PoP\PostsAPI\FieldValueResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\FieldResolvers\FieldResolverInterface;
-use PoP\API\FieldResolver_Root;
+use PoP\API\FieldResolvers\RootFieldResolver;
 use PoP\Posts\FieldValueResolvers\AbstractPostFieldValueResolver;
 
 class RootPostFieldValueResolver extends AbstractPostFieldValueResolver
@@ -12,7 +12,7 @@ class RootPostFieldValueResolver extends AbstractPostFieldValueResolver
 
     public static function getClassesToAttachTo(): array
     {
-        return array(FieldResolver_Root::class);
+        return array(RootFieldResolver::class);
     }
 
     public function getSchemaFieldDescription(FieldResolverInterface $fieldResolver, string $fieldName): ?string
