@@ -51,7 +51,7 @@ trait PostFieldValueResolverTrait
         return parent::getSchemaFieldArgs($fieldResolver, $fieldName) ?? parent::getSchemaFieldArgs($fieldResolver, $fieldName);
     }
 
-    public function resolveValue(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = [])
+    public function resolveValue(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
         $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
         switch ($fieldName) {
@@ -71,7 +71,7 @@ trait PostFieldValueResolverTrait
                 return null;
         }
 
-        return parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs);
+        return parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
     }
 
     public function resolveFieldDefaultDataloaderClass(FieldResolverInterface $fieldResolver, string $fieldName, array $fieldArgs = []): ?string
