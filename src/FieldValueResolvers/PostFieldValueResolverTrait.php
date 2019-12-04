@@ -3,7 +3,7 @@ namespace PoP\PostsAPI\FieldValueResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\Schema\SchemaDefinition;
-use PoP\ComponentModel\FieldResolvers\FieldResolverInterface;
+use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 
 trait PostFieldValueResolverTrait
 {
@@ -17,24 +17,24 @@ trait PostFieldValueResolverTrait
         );
     }
 
-    public function getSchemaFieldType(FieldResolverInterface $fieldResolver, string $fieldName): ?string
+    public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
 			'post' => SchemaDefinition::TYPE_ID,
         ];
-        return $types[$fieldName] ?? parent::getSchemaFieldType($fieldResolver, $fieldName);
+        return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
     }
 
-    public function getSchemaFieldDescription(FieldResolverInterface $fieldResolver, string $fieldName): ?string
+    public function getSchemaFieldDescription(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
 			'post' => $translationAPI->__('ID of the post', 'pop-posts'),
         ];
-        return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($fieldResolver, $fieldName);
+        return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }
 
-    public function getSchemaFieldArgs(FieldResolverInterface $fieldResolver, string $fieldName): array
+    public function getSchemaFieldArgs(TypeResolverInterface $typeResolver, string $fieldName): array
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         switch ($fieldName) {
@@ -48,10 +48,10 @@ trait PostFieldValueResolverTrait
                     ],
                 ];
         }
-        return parent::getSchemaFieldArgs($fieldResolver, $fieldName) ?? parent::getSchemaFieldArgs($fieldResolver, $fieldName);
+        return parent::getSchemaFieldArgs($typeResolver, $fieldName) ?? parent::getSchemaFieldArgs($typeResolver, $fieldName);
     }
 
-    public function resolveValue(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
+    public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
         $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
         switch ($fieldName) {
@@ -71,16 +71,16 @@ trait PostFieldValueResolverTrait
                 return null;
         }
 
-        return parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
+        return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
     }
 
-    public function resolveFieldDefaultDataloaderClass(FieldResolverInterface $fieldResolver, string $fieldName, array $fieldArgs = []): ?string
+    public function resolveFieldDefaultDataloaderClass(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): ?string
     {
         switch ($fieldName) {
             case 'post':
                 return \PoP\Posts\Dataloader_ConvertiblePostList::class;
         }
 
-        return parent::resolveFieldDefaultDataloaderClass($fieldResolver, $fieldName, $fieldArgs);
+        return parent::resolveFieldDefaultDataloaderClass($typeResolver, $fieldName, $fieldArgs);
     }
 }
