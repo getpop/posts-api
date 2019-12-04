@@ -1,19 +1,18 @@
 <?php
-namespace PoP\PostsAPI\FieldValueResolvers;
+namespace PoP\PostsAPI\FieldResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\Engine\FieldValueResolvers\SiteFieldValueResolverTrait;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\API\TypeResolvers\SiteTypeResolver;
-use PoP\Posts\FieldValueResolvers\AbstractPostFieldValueResolver;
+use PoP\API\TypeResolvers\RootTypeResolver;
+use PoP\Posts\FieldResolvers\AbstractPostFieldResolver;
 
-class SitePostFieldValueResolver extends AbstractPostFieldValueResolver
+class RootPostFieldResolver extends AbstractPostFieldResolver
 {
-    use PostFieldValueResolverTrait, SiteFieldValueResolverTrait;
+    use PostFieldResolverTrait;
 
     public static function getClassesToAttachTo(): array
     {
-        return array(SiteTypeResolver::class);
+        return array(RootTypeResolver::class);
     }
 
     public function getSchemaFieldDescription(TypeResolverInterface $typeResolver, string $fieldName): ?string
@@ -21,7 +20,7 @@ class SitePostFieldValueResolver extends AbstractPostFieldValueResolver
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
 			'post' => $translationAPI->__('ID of the post', 'posts-api'),
-			'posts' => $translationAPI->__('IDs of the posts in the site', 'posts-api'),
+			'posts' => $translationAPI->__('IDs of the posts in the current site', 'posts-api'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }

@@ -1,11 +1,11 @@
 <?php
-namespace PoP\PostsAPI\FieldValueResolvers;
+namespace PoP\PostsAPI\FieldResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 
-trait PostFieldValueResolverTrait
+trait PostFieldResolverTrait
 {
     public static function getFieldNamesToResolve(): array
     {
