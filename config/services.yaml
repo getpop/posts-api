@@ -1,4 +1,4 @@
 services:
-    PoP\PostsAPI\FieldValueResolvers\:
-        resource: '../src/FieldValueResolvers/*'
+    PoP\PostsAPI\FieldResolvers\:
+        resource: '../src/FieldResolvers/*'
         public: true
