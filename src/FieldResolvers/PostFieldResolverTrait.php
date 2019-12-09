@@ -4,6 +4,7 @@ namespace PoP\PostsAPI\FieldResolvers;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
+use PoP\Posts\TypeDataResolvers\ConvertiblePostTypeDataResolver;
 
 trait PostFieldResolverTrait
 {
@@ -78,7 +79,7 @@ trait PostFieldResolverTrait
     {
         switch ($fieldName) {
             case 'post':
-                return \PoP\Posts\Dataloader_ConvertiblePostList::class;
+                return ConvertiblePostTypeDataResolver::class;
         }
 
         return parent::resolveFieldDefaultTypeDataResolverClass($typeResolver, $fieldName, $fieldArgs);
