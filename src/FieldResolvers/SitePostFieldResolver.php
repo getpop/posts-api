@@ -20,8 +20,8 @@ class SitePostFieldResolver extends AbstractPostFieldResolver
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
-			'post' => $translationAPI->__('ID of the post', 'posts-api'),
-			'posts' => $translationAPI->__('IDs of the posts in the site', 'posts-api'),
+			'post' => $translationAPI->__('Post with a specific ID', 'posts-api'),
+			'posts' => $translationAPI->__('Posts in the site', 'posts-api'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }

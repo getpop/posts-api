@@ -30,7 +30,7 @@ trait PostFieldResolverTrait
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
-			'post' => $translationAPI->__('ID of the post', 'pop-posts'),
+			'post' => $translationAPI->__('Post with a specific ID', 'pop-posts'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }
