@@ -5,6 +5,7 @@ use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
+use PoP\Posts\Facades\PostTypeAPIFacade;
 
 trait PostFieldResolverTrait
 {
@@ -54,7 +55,7 @@ trait PostFieldResolverTrait
 
     public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
-        $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
+        $cmspostsapi = PostTypeAPIFacade::getInstance();
         switch ($fieldName) {
             case 'post':
                 $query = [
