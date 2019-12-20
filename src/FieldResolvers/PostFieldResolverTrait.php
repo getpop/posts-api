@@ -55,7 +55,7 @@ trait PostFieldResolverTrait
 
     public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
-        $cmspostsapi = PostTypeAPIFacade::getInstance();
+        $postTypeAPI = PostTypeAPIFacade::getInstance();
         switch ($fieldName) {
             case 'post':
                 $query = [
@@ -67,7 +67,7 @@ trait PostFieldResolverTrait
                 $options = [
                     'return-type' => POP_RETURNTYPE_IDS,
                 ];
-                if ($posts = $cmspostsapi->getPosts($query, $options)) {
+                if ($posts = $postTypeAPI->getPosts($query, $options)) {
                     return $posts[0];
                 }
                 return null;
